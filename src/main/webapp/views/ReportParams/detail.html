@@ -1,0 +1,48 @@
+<header ng-switch on="$location.path().indexOf('/ReportParams/new') > -1">
+    <h3 ng-switch-when="true">Create a new ReportParams</h3>
+    <h3 ng-switch-when="false">View or edit ReportParams</h3>
+</header>
+<form id="ReportParamsForm" name="ReportParamsForm" class="form-horizontal" role="form">
+    <div ng-show="displayError" class="alert alert-danger">
+        <strong>Error!</strong> Something broke. Retry, or cancel and start afresh.
+    </div>
+    
+
+    <div class="form-group" ng-class="{'has-error': ReportParamsForm.nome.$invalid}">
+        <label for="nome" class="col-sm-2 control-label">Nome</label>
+        <div id="nomeControls" class="col-sm-10">
+            <input id="nome" name="nome" type="text" class="form-control" ng-model="reportParams.nome" placeholder="Enter the ReportParams Nome"></input>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': ReportParamsForm.dataInicio.$invalid}">
+        <label for="dataInicio" class="col-sm-2 control-label">Data Inicio</label>
+        <div id="dataInicioControls" class="col-sm-10">
+            <input id="dataInicio" name="dataInicio" type="text" class="form-control" ng-model="reportParams.dataInicio" placeholder="Enter the ReportParams Data Inicio"></input>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': ReportParamsForm.dataFim.$invalid}">
+        <label for="dataFim" class="col-sm-2 control-label">Data Fim</label>
+        <div id="dataFimControls" class="col-sm-10">
+            <input id="dataFim" name="dataFim" type="text" class="form-control" ng-model="reportParams.dataFim" placeholder="Enter the ReportParams Data Fim"></input>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': ReportParamsForm.senha.$invalid}">
+        <label for="senha" class="col-sm-2 control-label">Senha</label>
+        <div id="senhaControls" class="col-sm-10">
+            <input id="senha" name="senha" type="number" class="form-control" ng-model="reportParams.senha" placeholder="Enter the ReportParams Senha"></input>
+            <span class="help-block error" ng-show="ReportParamsForm.senha.$error.number">not a number</span>
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button id="saveReportParams" name="saveReportParams" class="btn btn-primary" ng-disabled="isClean() || ReportParamsForm.$invalid" ng-click="save()"><span class="glyphicon glyphicon-ok-sign"></span> Save</button>
+            <button id="cancel" name="cancel" class="btn btn-default" ng-click="cancel()"><span class="glyphicon glyphicon-remove-sign"></span> Cancel</button>
+            <button id="deleteReportParams" name="deleteReportParams" class="btn btn-danger" ng-show="reportParams.id" ng-click="remove()"><span class="glyphicon glyphicon-trash"></span> Delete</button>
+        </div>
+    </div>
+</form>
