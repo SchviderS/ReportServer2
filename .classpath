@@ -36,5 +36,6 @@
 	<classpathentry kind="lib" path="C:/wildfly-8.2.0.Final/bin/client/jboss-client.jar"/>
 	<classpathentry kind="src" path="/ReportServer"/>
 	<classpathentry kind="src" path="/wildfly-ejb-asynchronous-ejb"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

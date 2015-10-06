@@ -10,6 +10,7 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
 import br.univel.ReportServer2.model.ReportParams;
+import br.univel.ReportServer2.service.ReportStatus;
 
 public class Test {
 
@@ -18,7 +19,7 @@ public class Test {
 	public static void main(String[] args) {
 		
 		testarEjbAndQueue();
-		
+
 	}
 
 	private static void testarEjbAndQueue() {
@@ -41,7 +42,11 @@ public class Test {
 			Future<Integer> result = queue.sendToQueue(params);
 			
 			try {
+				
 				System.out.println("Resultado aleatório vindo do EJB: " + result.get());
+				
+				testarWs(result.get());
+				
 			} catch (InterruptedException | ExecutionException e) {
 				e.printStackTrace();
 			}
@@ -50,5 +55,12 @@ public class Test {
 		} catch (NamingException e) {
 			e.printStackTrace();
 		}
+		
+	}
+	
+	private static void testarWs(int result){
+		ReportStatus rs = new ReportStatus();
+		String respostaWs = rs.status(result);
+		System.out.println(respostaWs);
 	}
 }
